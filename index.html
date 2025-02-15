@@ -1,1 +1,473 @@
-1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>hossam shatoury - حسام شطوري</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- AOS for animations (تُستخدم فقط في النسخة الإنجليزية) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    /* Animated Gradient Background */
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    body {
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(45deg, #1e3c72, #2a5298, #1e3c72);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #333;
+      transition: background 0.3s, color 0.3s;
+      text-align: left;
+    }
+    body.dark-mode {
+      background: linear-gradient(45deg, #141E30, #243B55, #141E30);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #e9ecef;
+    }
+    /* Arabic styles */
+    body.rtl {
+      direction: rtl;
+      text-align: right;
+      font-family: 'El Messiri', sans-serif;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 25px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 5px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    body.dark-mode .container {
+      background: rgba(52,58,64,0.95);
+    }
+    
+    header {
+      background: rgba(52,58,64,0.9);
+      color: #fff;
+      padding: 25px 15px;
+      text-align: center;
+    }
+    #profile-pic {
+      display: block;
+      margin: 0 auto 10px;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #fff;
+    }
+    
+    nav {
+      display: flex;
+      justify-content: center;
+      background: rgba(73,80,87,0.9);
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+    nav a {
+      color: #fff;
+      padding: 12px 20px;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.3s;
+      font-size: 1rem;
+    }
+    nav a:hover {
+      background: rgba(108,117,125,0.9);
+      transform: scale(1.05);
+    }
+    
+    h2 {
+      margin-bottom: 10px;
+      color: #343a40;
+      border-bottom: 2px solid #343a40;
+      padding-bottom: 5px;
+      font-size: 1.4rem;
+    }
+    body.dark-mode h2 {
+      color: #e9ecef;
+      border-bottom: 2px solid #e9ecef;
+    }
+    
+    /* تنسيق الفقرات */
+    p, pre {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      padding: 12px;
+      background: rgba(240,240,240,0.8);
+      border-radius: 5px;
+    }
+    p::before, pre::before {
+      content: "\f08d";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 10px;
+      color: #007bff;
+      font-size: 1rem;
+    }
+    body.rtl p::before, body.rtl pre::before {
+      margin-right: 0;
+      margin-left: 10px;
+    }
+    
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 1rem;
+    }
+    button:hover { opacity: 0.9; }
+    .icon { margin-right: 8px; }
+    
+    .lang-toggle, .theme-toggle {
+      position: fixed;
+      z-index: 1000;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 0.9rem;
+    }
+    .lang-toggle {
+      top: 20px;
+      left: 20px;
+      background: #28a745;
+      color: #fff;
+    }
+    .theme-toggle {
+      top: 20px;
+      right: 20px;
+      background: #007bff;
+      color: #fff;
+    }
+    body.dark-mode .theme-toggle { background: #0056b3; }
+    .lang-toggle:hover { background: #218838; }
+    
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      background: rgba(52,58,64,0.9);
+      color: #fff;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+    
+    /* استجابة الجوال */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+      }
+      nav a {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      p, pre {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+      button {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+      }
+      .lang-toggle, .theme-toggle {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+      }
+    }
+    
+    /* إضافات لشاشات أصغر جدًا */
+    @media (max-width: 480px) {
+      header {
+        padding: 15px 10px;
+      }
+      #profile-pic {
+        width: 120px;
+        height: 120px;
+      }
+      nav a {
+        font-size: 0.9rem;
+      }
+      h2 {
+        font-size: 1.2rem;
+      }
+      p, pre {
+        font-size: 0.9rem;
+        padding: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- أزرار تبديل اللغة والوضع -->
+  <button class="lang-toggle" id="btn-en"><i class="fas fa-globe"></i> English</button>
+  <button class="lang-toggle" id="btn-ar" style="left:150px;"><i class="fas fa-globe"></i> العربية</button>
+  <button class="theme-toggle" id="themeToggle"><i class="fas fa-adjust"></i> Toggle Theme</button>
+  
+  <header data-aos="fade-down">
+    <img id="profile-pic" src="profile.jpg" alt="Profile Picture">
+    <h1 id="header-title">hossam shatoury</h1>
+  </header>
+  
+  <nav data-aos="fade-up">
+    <a href="#contact"><i class="fas fa-address-book icon"></i> Contact</a>
+    <a href="#education"><i class="fas fa-graduation-cap icon"></i> Education</a>
+    <a href="#skills"><i class="fas fa-tools icon"></i> Skills</a>
+    <a href="#work"><i class="fas fa-briefcase icon"></i> Work Experience</a>
+    <a href="#courses"><i class="fas fa-book icon"></i> Courses</a>
+    <a href="#about"><i class="fas fa-user icon"></i> About Me</a>
+  </nav>
+  
+  <!-- المحتوى الإنجليزي (بتأثيرات AOS) -->
+  <div class="container" id="content-en">
+    <section id="contact" data-aos="fade-right">
+      <h2>CONTACT ME</h2>
+      <p><i class="fas fa-map-marker-alt icon"></i> 123 Ebny Betek, Sector F, 2nd District, 10th of Ramadan City, Sharqia, Egypt.</p>
+      <p><i class="fas fa-envelope icon"></i> Email: <a href="mailto:hossamshattury@gmail.com">hossamshattury@gmail.com</a></p>
+      <p><i class="fas fa-phone icon"></i> Phone: <a href="tel:+201012207817">+201012207817</a> | <a href="tel:+201275908007">+201275908007</a></p>
+      <button onclick="window.open('https://www.facebook.com/shattury11','_blank')" style="background:#4267B2; color:#fff;">
+        <i class="fab fa-facebook"></i> Facebook
+      </button>
+      <button onclick="window.location.href='mailto:hossamshattury@gmail.com'" style="background:#007bff; color:#fff;">
+        <i class="fas fa-paper-plane"></i> Contact Me
+      </button>
+    </section>
+    
+    <section id="education" data-aos="fade-left">
+      <h2>EDUCATION</h2>
+      <pre>
+Al Jazeera Academy
+
+Bachelor's Degree in
+Management Information Systems
+
+2019 - 2023
+      </pre>
+    </section>
+    
+    <section id="skills" data-aos="fade-right">
+      <h2>SKILLS</h2>
+      <pre>
+Proficient in Microsoft Office (Excel, Word).
+Arcsales software
+
+Digital marketing and social media
+
+Accounting, MIS
+
+Data analysis and reporting
+      </pre>
+    </section>
+    
+    <section id="work" data-aos="fade-left">
+      <h2>WORK EXPERIENCE</h2>
+      <pre>
+June 2024 - Present
+AM for Advanced Engineering Industries
+
+Accountant
+
+Manage client and supplier accounts, oversee cash flow, and ensure accurate inventory management.
+Also responsible for preparing cost reports, tax returns, and electronic invoicing.
+Maintain organized financial records and assist in preparing the annual budget.
+
+2023 - 2024
+Al-Masria for Accounting and Taxation
+Trainee Accountant
+
+Assisted in establishing and modifying company structures and systems.
+Prepared financial reports, tax returns, and electronic invoices.
+Ensured compliance with local tax regulations and accounting standards.
+Collaborated with senior accountants to streamline processes.
+
+2015 - 2017 Self-employed
+Freelance Writer & Marketing Specialist
+
+Wrote articles and blog posts for various clients.
+Managed social media marketing campaigns for multiple brands.
+Moderated online e-commerce pages, handling customer inquiries and product listings.
+      </pre>
+    </section>
+    
+    <section id="courses" data-aos="fade-up">
+      <h2>COURSES</h2>
+      <pre>
+Data Analysis Course (Edraak) – Online
+
+Digital Analysis Course (Edraak) – Online
+
+Accounting And Financial Management Course (Edraak) – Online
+      </pre>
+    </section>
+    
+    <section id="about" data-aos="fade-up">
+      <h2>ABOUT ME</h2>
+      <pre>
+I’m an accountant handling daily tasks such as accounts payable/receivable,
+financial record reconciliation, and cash flow management.
+I ensure accurate reporting and budgeting.
+I’ve also freelanced in digital marketing and have experience in Management Information Systems (MIS),
+enhancing my skills in data analysis.
+      </pre>
+    </section>
+  </div>
+  
+  <!-- المحتوى العربي (بدون تأثيرات AOS) -->
+  <div class="container rtl" id="content-ar" style="display: none;">
+    <section id="contact-ar">
+      <h2>تواصل معي</h2>
+      <p><i class="fas fa-map-marker-alt icon"></i> 123 ابن بيتك، القطاع F، المنطقة الثانية، مدينة العاشر من رمضان، الشرقية، مصر.</p>
+      <p><i class="fas fa-envelope icon"></i> البريد الإلكتروني: <a href="mailto:hossamshattury@gmail.com">hossamshattury@gmail.com</a></p>
+      <p><i class="fas fa-phone icon"></i> الهاتف: <a href="tel:+201012207817">+201012207817</a> | <a href="tel:+201275908007">+201275908007</a></p>
+      <button onclick="window.open('https://www.facebook.com/shattury11','_blank')" style="background:#4267B2; color:#fff;">
+        <i class="fab fa-facebook"></i> فيسبوك
+      </button>
+      <button onclick="window.location.href='mailto:hossamshattury@gmail.com'" style="background:#007bff; color:#fff;">
+        <i class="fas fa-paper-plane"></i> تواصل معي
+      </button>
+    </section>
+    
+    <section id="education-ar">
+      <h2>التعليم</h2>
+      <pre>
+أكاديمية الجزيرة
+
+بكالوريوس في
+نظم المعلومات الإدارية
+
+2019 - 2023
+      </pre>
+    </section>
+    
+    <section id="skills-ar">
+      <h2>المهارات</h2>
+      <pre>
+إجادة استخدام Microsoft Office (Excel, Word).
+برنامج Arcsales
+
+التسويق الرقمي ووسائل التواصل الاجتماعي
+
+المحاسبة ونظم المعلومات الإدارية (MIS)
+
+تحليل البيانات وإعداد التقارير
+      </pre>
+    </section>
+    
+    <section id="work-ar">
+      <h2>الخبرة العملية</h2>
+      <pre>
+يونيو 2024 - حتى الآن
+شركة الصناعات الهندسية المتقدمة
+
+محاسب
+
+إدارة حسابات العملاء والموردين، ومراقبة التدفق النقدي،
+وضمان إدارة المخزون بدقة. بالإضافة إلى إعداد تقارير التكلفة،
+الإقرارات الضريبية، والفواتير الإلكترونية.
+المساعدة في إعداد الميزانية السنوية لتحقيق الأهداف المالية.
+
+2023 - 2024
+المصرية للمحاسبة والضرائب
+محاسب متدرب
+
+المساهمة في إنشاء وتعديل هياكل وأنظمة الشركة.
+إعداد التقارير المالية، والإقرارات الضريبية، والفواتير الإلكترونية.
+ضمان الامتثال للوائح الضرائب المحلية ومعايير المحاسبة.
+التعاون مع كبار المحاسبين لتحسين العمليات.
+
+2015 - 2017
+عمل حر
+كاتب حر ومتخصص في التسويق
+
+كتابة مقالات ومنشورات لعملاء من صناعات مختلفة.
+إدارة حملات تسويق عبر وسائل التواصل الاجتماعي لعدة علامات تجارية.
+الإشراف على صفحات التجارة الإلكترونية والتعامل مع استفسارات العملاء.
+      </pre>
+    </section>
+    
+    <section id="courses-ar">
+      <h2>الدورات</h2>
+      <pre>
+دورة تحليل البيانات (إدراك) – عبر الإنترنت
+
+دورة التحليل الرقمي (إدراك) – عبر الإنترنت
+
+دورة المحاسبة والإدارة المالية (إدراك) – عبر الإنترنت
+      </pre>
+    </section>
+    
+    <section id="about-ar">
+      <h2>من أنا</h2>
+      <pre>
+محاسب أتعامل مع المهام اليومية مثل الحسابات المستحقة الدفع/الاستلام،
+ومطابقة السجلات المالية، وإدارة التدفق النقدي.
+أضمن إعداد تقارير دقيقة وميزانيات محكمة.
+كما عملت كمستقل في التسويق الرقمي ولدي خبرة في نظم المعلومات الإدارية (MIS)
+مما ساهم في تعزيز مهاراتي في تحليل البيانات.
+      </pre>
+    </section>
+  </div>
+  
+  <footer>
+    <p>© 2025 جميع الحقوق محفوظة</p>
+    <p>برمجة وتصميم: حسام شطوري</p>
+  </footer>
+  
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000 });
+    
+    // منع عرض الكود بواسطة النقر بالزر الأيمن وبعض الاختصارات
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => { 
+      if(e.keyCode === 123 || (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74))) 
+        e.preventDefault(); 
+    });
+    
+    $(document).ready(function(){
+      $('#btn-en').on('click', function(){
+        $('#content-en').show();
+        $('#content-ar').hide();
+        $('#header-title').text('hossam shatoury');
+        $('body').removeClass('rtl');
+      });
+      $('#btn-ar').on('click', function(){
+        $('#content-en').hide();
+        $('#content-ar').show();
+        $('#header-title').text('حسام شطوري');
+        $('body').addClass('rtl');
+      });
+      $('#themeToggle').on('click', function(){
+        $('body').toggleClass('dark-mode');
+      });
+    });
+  </script>
+</body>
+</html>
