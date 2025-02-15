@@ -4,19 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>hossam shatoury - حسام شطوري</title>
-  <!-- Fonts for English and Arabic -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&display=swap" rel="stylesheet">
-  <!-- FontAwesome for icons -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- AOS for scroll animations (تُستخدم فقط في النسخة الإنجليزية) -->
+  <!-- AOS (للنصوص الإنجليزية فقط) -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     /* Reset */
-    * { margin:0; padding:0; box-sizing:border-box; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     
-    /* Animated Gradient Background */
+    /* Animated Background */
     @keyframes gradientBG {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -29,6 +29,7 @@
       animation: gradientBG 15s ease infinite;
       color: #333;
       transition: background 0.3s, color 0.3s;
+      text-align: left;
     }
     body.dark-mode {
       background: linear-gradient(45deg, #141E30, #243B55, #141E30);
@@ -36,38 +37,13 @@
       animation: gradientBG 15s ease infinite;
       color: #e9ecef;
     }
-    /* Arabic: تغيير الخط وتفعيل RTL */
+    /* Arabic styles */
     body.rtl {
       direction: rtl;
       text-align: right;
       font-family: 'El Messiri', sans-serif;
     }
     
-    /* الخط للفقرات فقط */
-    p, pre {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 15px;
-      font-family: 'Lato', sans-serif;
-    }
-    body.rtl p, body.rtl pre {
-      font-family: 'El Messiri', sans-serif;
-    }
-    /* أيقونة الدبابة كبادئة لكل فقرة */
-    p::before, pre::before {
-      content: "\f08d";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      margin-right: 8px;
-      color: #007bff;
-    }
-    /* تعديل للمحتوى RTL */
-    body.rtl p::before, body.rtl pre::before {
-      margin-right: 0;
-      margin-left: 8px;
-    }
-    
-    /* Container */
     .container {
       max-width: 1200px;
       margin: 20px auto;
@@ -86,11 +62,10 @@
       color: #fff;
       padding: 20px;
       text-align: center;
-      position: relative;
     }
     #profile-pic {
       display: block;
-      margin: 0 auto 10px auto;
+      margin: 0 auto 10px;
       width: 150px;
       height: 150px;
       border-radius: 50%;
@@ -115,7 +90,6 @@
       transform: scale(1.05);
     }
     
-    section { margin-bottom: 40px; }
     h2 {
       margin-bottom: 10px;
       color: #343a40;
@@ -126,7 +100,28 @@
       color: #e9ecef;
       border-bottom: 2px solid #e9ecef;
     }
-    a { color: inherit; text-decoration: underline; }
+    
+    /* تعديل الفقرات (العناوين تبقى بدون تغييرات) */
+    p, pre {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: rgba(240,240,240,0.8);
+      border-radius: 5px;
+    }
+    /* إضافة رمز دبابة كبادئة لكل فقرة */
+    p::before, pre::before {
+      content: "\f08d";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-right: 10px;
+      color: #007bff;
+    }
+    body.rtl p::before, body.rtl pre::before {
+      margin-right: 0;
+      margin-left: 10px;
+    }
     
     button {
       margin: 5px;
@@ -139,7 +134,6 @@
     button:hover { opacity: 0.9; }
     .icon { margin-right: 8px; }
     
-    /* Toggle Buttons */
     .lang-toggle, .theme-toggle {
       position: fixed;
       z-index: 1000;
@@ -161,7 +155,9 @@
       background: #007bff;
       color: #fff;
     }
-    body.dark-mode .theme-toggle { background: #0056b3; }
+    body.dark-mode .theme-toggle {
+      background: #0056b3;
+    }
     .lang-toggle:hover { background: #218838; }
     
     footer {
@@ -172,26 +168,36 @@
       margin-top: 20px;
     }
     
-    /* Responsive */
+    /* Responsive adjustments */
     @media (max-width: 768px) {
-      nav a { padding: 10px 15px; }
-      .lang-toggle { top: 10px; left: 10px; padding: 8px 12px; }
-      .theme-toggle { top: 10px; right: 10px; padding: 8px 12px; }
-      header { padding: 15px; }
-      #profile-pic { width: 120px; height: 120px; }
-      .container { margin: 10px; padding: 15px; }
+      nav {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav a {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+      }
+      .container {
+        margin: 10px;
+        padding: 15px;
+      }
+      p, pre {
+        font-size: 0.95rem;
+        padding: 8px;
+      }
     }
   </style>
 </head>
 <body>
-  <!-- Toggle buttons -->
+  <!-- أزرار تبديل اللغة والوضع -->
   <button class="lang-toggle" id="btn-en"><i class="fas fa-globe"></i> English</button>
   <button class="lang-toggle" id="btn-ar" style="left:150px;"><i class="fas fa-globe"></i> العربية</button>
   <button class="theme-toggle" id="themeToggle"><i class="fas fa-adjust"></i> Toggle Theme</button>
   
   <header data-aos="fade-down">
     <img id="profile-pic" src="profile.jpg" alt="Profile Picture">
-    <!-- عرض الاسم فقط -->
     <h1 id="header-title">hossam shatoury</h1>
   </header>
   
@@ -204,7 +210,7 @@
     <a href="#about"><i class="fas fa-user icon"></i> About Me</a>
   </nav>
   
-  <!-- English content container (تأثيرات AOS مفعلة) -->
+  <!-- المحتوى الإنجليزي (بتأثيرات AOS) -->
   <div class="container" id="content-en">
     <section id="contact" data-aos="fade-right">
       <h2>CONTACT ME</h2>
@@ -298,7 +304,7 @@ enhancing my skills in data analysis.
     </section>
   </div>
   
-  <!-- Arabic content container (بدون تأثيرات AOS لتبسيط العرض) -->
+  <!-- المحتوى العربي (بدون AOS لتبسيط العرض) -->
   <div class="container rtl" id="content-ar" style="display: none;">
     <section id="contact-ar">
       <h2>تواصل معي</h2>
