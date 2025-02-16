@@ -4,12 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>حسام شطوري</title>
-  <!-- خطوط جوجل -->
+  <!-- خطوط Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <!-- مكتبة AOS لتحريك العناصر عند التمرير -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" integrity="sha512-GKz6rZKjCKY2h8RSZqN2yE68kJ/bsP4dOr3DsnpeKuO0rFTLz4PJkTE7UI5xQ/+XKmy4zF5Epc3VPOJIr26V+w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- مكتبة توليد QR Code -->
+  <!-- مكتبة QRCode -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- مكتبة Typed.js لتأثير الكتابة الآلية -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <style>
     /* الإعدادات العامة */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -42,6 +44,13 @@
       font-size: 1.2rem;
       margin-bottom: 20px;
       animation: fadeInDown 1.5s;
+    }
+    /* قسم النص المتحرك بتأثير الكتابة الآلية */
+    #typed-text {
+      font-size: 1.5rem;
+      color: #ffcc00;
+      margin-bottom: 20px;
+      min-height: 2em;
     }
     .profile-img {
       width: 150px;
@@ -81,7 +90,7 @@
       margin-bottom: 15px;
       color: #ffcc00;
     }
-    /* قسم الخبرات والشهادات (محاذاة من اليمين) */
+    /* الخبرات والشهادات */
     .experience, .education {
       text-align: right;
       direction: rtl;
@@ -121,6 +130,24 @@
     #qrcode:hover {
       transform: scale(1.05);
     }
+    /* زر العودة للأعلى */
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #ffcc00;
+      border: none;
+      border-radius: 50%;
+      padding: 10px 15px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+    #back-to-top:hover {
+      transform: scale(1.1);
+    }
     /* الفوتر */
     footer {
       text-align: center;
@@ -152,13 +179,14 @@
     <header data-aos="fade-down">
       <img src="profile.jpg" alt="حسام شطوري" class="profile-img">
       <h1>حسام شطوري</h1>
-      <p>محاسب متخصص في تحليل البيانات والإدارة المالية</p>
-      <a href="https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4" class="btn">تحميل السيرة الذاتية</a>
+      <!-- النص المتحرك باستخدام تأثير الكتابة الآلية -->
+      <div id="typed-text"></div>
+      <a href="https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4" class="btn">تحميل السيرة الذاتية 📥</a>
     </header>
 
     <!-- قسم الخبرات العملية -->
     <section class="experience" data-aos="fade-up">
-      <h2>الخبرات العملية</h2>
+      <h2>الخبرات العملية 💼</h2>
       <ul>
         <li><strong>محاسب - شركة AM للصناعات الهندسية المتطورة</strong> (يونيو 2024 - حتى الآن)</li>
         <li><strong>محاسب تحت التدريب - المصرية للمحاسبة والضرائب</strong> (2023 - 2024)</li>
@@ -168,7 +196,7 @@
 
     <!-- قسم الشهادات والدورات -->
     <section class="education" data-aos="fade-up">
-      <h2>الشهادات والدورات</h2>
+      <h2>الشهادات والدورات 🎓</h2>
       <ul>
         <li>🎓 <strong>بكالوريوس نظم معلومات إدارية</strong> - أكاديمية الجزيرة (2023)</li>
         <li>📜 <a href="#" target="_blank">دورة التثقيف الذاتي - إدراك</a></li>
@@ -180,14 +208,14 @@
 
     <!-- قسم QR Code لتحميل السيرة الذاتية -->
     <section id="qr-section" data-aos="fade-up">
-      <h2>تحميل السيرة الذاتية عبر QR Code</h2>
+      <h2>تحميل السيرة الذاتية عبر QR Code 📲</h2>
       <div id="qrcode"></div>
       <p>اضغط على الـ QR Code للتحميل</p>
     </section>
 
     <!-- قسم معلومات الاتصال -->
     <section class="contact" data-aos="fade-up">
-      <h2>معلومات الاتصال</h2>
+      <h2>معلومات الاتصال 🤝</h2>
       <p>📞 <a href="tel:+201012207817">+201012207817</a> | <a href="tel:+201212299115">+201212299115</a></p>
       <p>🔗 تابعني على: <a href="https://www.facebook.com/shattury11" target="_blank">فيسبوك</a> | <a href="https://www.linkedin.com/in/hossam-shattury-ba3023258/" target="_blank">لينكد إن</a></p>
     </section>
@@ -198,6 +226,9 @@
     </footer>
   </div>
 
+  <!-- زر العودة للأعلى -->
+  <button id="back-to-top" title="عودة للأعلى">⬆️</button>
+
   <!-- سكريبتات -->
   <!-- تفعيل مكتبة AOS لتحريك العناصر عند التمرير -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" integrity="sha512-2U9Ih0BRLJ3a9e1cdTsUcxS3z0R+gWHK4nTRCTf0F1RLVYR4RfpV7b5YFWyV5Jk98lGjTEKZ0d1js8Pyc1g7cQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -207,4 +238,58 @@
       once: true
     });
 
-    // إعداد رابط تحميل
+    // إعداد رابط تحميل السيرة الذاتية
+    var downloadLink = "https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4";
+
+    // توليد QR Code باستخدام مكتبة qrcodejs
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: downloadLink,
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // عند الضغط على QR Code يتم بدء التحميل
+    document.getElementById("qrcode").addEventListener("click", function() {
+      window.location.href = downloadLink;
+    });
+
+    // إعداد تأثير الكتابة الآلية باستخدام Typed.js
+    var typed = new Typed("#typed-text", {
+      strings: ["محاسب محترف 💼", "متخصص في تحليل البيانات 📊", "مبدع في الإدارة المالية 💰"],
+      typeSpeed: 50,
+      backSpeed: 25,
+      loop: true
+    });
+
+    // زر العودة للأعلى
+    var backToTop = document.getElementById("back-to-top");
+    window.onscroll = function() {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        backToTop.style.display = "block";
+      } else {
+        backToTop.style.display = "none";
+      }
+    };
+    backToTop.addEventListener("click", function() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // حماية الكود: منع النقر بزر الماوس الأيمن، النسخ وتحديد النصوص
+    document.addEventListener("contextmenu", function(e) { e.preventDefault(); });
+    document.addEventListener("keydown", function(e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")) ||
+        (e.ctrlKey && (e.key === "U" || e.key === "u"))
+      ) {
+        e.preventDefault();
+      }
+    });
+    document.addEventListener("selectstart", function(e) { e.preventDefault(); });
+    document.addEventListener("copy", function(e) { e.preventDefault(); });
+  </script>
+</body>
+</html>
