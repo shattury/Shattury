@@ -1,61 +1,202 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>حسام شطوري</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حسام شطوري</title>
+  <!-- استدعاء خط من Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <!-- مكتبة توليد QR Code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style>
+    /* إعدادات عامة */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 30px;
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+    header p {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+    }
+    section {
+      margin: 30px 0;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ffcc00;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    p {
+      margin-bottom: 15px;
+    }
+    a.btn {
+      background-color: #ffcc00;
+      color: #121212;
+      padding: 12px 25px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin: 10px;
+      display: inline-block;
+    }
+    a.btn:hover {
+      background-color: #e6b800;
+      transform: scale(1.05);
+    }
+    .experience ul,
+    .education ul {
+      list-style: none;
+      padding: 0;
+      text-align: right;
+      direction: rtl;
+    }
+    .experience li,
+    .education li {
+      margin: 10px 0;
+    }
+    footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #ffcc00;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    /* قسم QR Code */
+    #qrcode-container {
+      margin: 20px auto;
+      width: 200px;
+      height: 200px;
+    }
+    #qrcode {
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    #qrcode:hover {
+      transform: scale(1.05);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>حسام شطوري</h1>
-            <p>محاسب متخصص في تحليل البيانات والإدارة المالية</p>
-        </header>
-        
-        <section class="profile">
-            <img src="profile.jpg" alt="صورة حسام شطوري">
-            <p>مرحبًا بك في صفحتي الشخصية! يمكنك تحميل سيرتي الذاتية ومسح QR Code للتحميل المباشر.</p>
-            <a href="https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4" class="btn">📥 تحميل السيرة الذاتية</a>
-            <p>📄 أو امسح QR Code التالي:</p>
-            <img src="qrcode.png" alt="QR Code لتحميل السيرة الذاتية">
-        </section>
+  <div class="container">
+    <!-- الهيدر -->
+    <header>
+      <h1>حسام شطوري</h1>
+      <p>محاسب متخصص في تحليل البيانات والإدارة المالية</p>
+    </header>
 
-        <section class="experience">
-            <h2>الخبرات العملية</h2>
-            <ul>
-                <li><strong>محاسب - شركة AM للصناعات الهندسية المتطورة</strong> (يونيو 2024 - حتى الآن)</li>
-                <li><strong>محاسب تحت التدريب - المصرية للمحاسبة والضرائب</strong> (2023 - 2024)</li>
-                <li><strong>كاتب مقالات ومتخصص تسويق (فريلانسر)</strong> (2020 - 2023)</li>
-            </ul>
-        </section>
+    <!-- قسم الملف الشخصي والتحميل -->
+    <section class="profile">
+      <p>مرحبًا بك في صفحتي الشخصية. يمكنك تحميل سيرتي الذاتية عبر الضغط على الزر أدناه أو بمسح الـ QR Code.</p>
+      <a href="https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4" class="btn">تحميل السيرة الذاتية</a>
+    </section>
 
-        <section class="education">
-            <h2>الشهادات والدورات</h2>
-            <ul>
-                <li>🎓 **بكالوريوس نظم معلومات إدارية - أكاديمية الجزيرة (2023)**</li>
-                <li>📜 <a href="#">دورة التثقيف الذاتي - إدراك</a></li>
-                <li>📜 <a href="#">دورة المحاسبة والإدارة المالية - إدراك</a></li>
-                <li>📜 <a href="#">دورة تحليل البيانات - إدراك</a></li>
-                <li>📜 <a href="#">دورة التحليل الرقمي - إدراك</a></li>
-            </ul>
-        </section>
+    <!-- قسم QR Code -->
+    <section id="qr-section">
+      <h2>QR Code للتحميل</h2>
+      <div id="qrcode-container">
+        <div id="qrcode"></div>
+      </div>
+      <p>اضغط على الـ QR Code للبدء بالتحميل</p>
+    </section>
 
-        <footer>
-            <p>📞 اتصل بي: <a href="tel:+201012207817">+201012207817</a> | <a href="tel:+201212299115">+201212299115</a></p>
-            <p>🔗 تابعني على: <a href="https://www.facebook.com/shattury11">فيسبوك</a> | <a href="https://www.linkedin.com/in/hossam-shattury-ba3023258/">لينكد إن</a></p>
-        </footer>
-    </div>
+    <!-- قسم الخبرات العملية -->
+    <section class="experience">
+      <h2>الخبرات العملية</h2>
+      <ul>
+        <li><strong>محاسب - شركة AM للصناعات الهندسية المتطورة</strong> (يونيو 2024 - حتى الآن)</li>
+        <li><strong>محاسب تحت التدريب - المصرية للمحاسبة والضرائب</strong> (2023 - 2024)</li>
+        <li><strong>كاتب مقالات ومتخصص تسويق (فريلانسر)</strong> (2020 - 2023)</li>
+      </ul>
+    </section>
 
-    <script>
-        // منع الكليك اليمين وفتح أدوات المطورين
-        document.addEventListener("contextmenu", event => event.preventDefault());
-        document.addEventListener("keydown", function(event) {
-            if (event.ctrlKey && (event.key === "u" || event.key === "U" || event.key === "s" || event.key === "S")) {
-                event.preventDefault();
-            }
-        });
-    </script>
+    <!-- قسم الشهادات والدورات -->
+    <section class="education">
+      <h2>الشهادات والدورات</h2>
+      <ul>
+        <li>🎓 <strong>بكالوريوس نظم معلومات إدارية</strong> - أكاديمية الجزيرة (2023)</li>
+        <li>📜 <a href="#" target="_blank">دورة التثقيف الذاتي - إدراك</a></li>
+        <li>📜 <a href="#" target="_blank">دورة المحاسبة والإدارة المالية - إدراك</a></li>
+        <li>📜 <a href="#" target="_blank">دورة تحليل البيانات - إدراك</a></li>
+        <li>📜 <a href="#" target="_blank">دورة التحليل الرقمي - إدراك</a></li>
+      </ul>
+    </section>
+
+    <!-- الفوتر -->
+    <footer>
+      <p>📞 اتصل بي: <a href="tel:+201012207817">+201012207817</a> | <a href="tel:+201212299115">+201212299115</a></p>
+      <p>🔗 تابعني على: <a href="https://www.facebook.com/shattury11" target="_blank">فيسبوك</a> | <a href="https://www.linkedin.com/in/hossam-shattury-ba3023258/" target="_blank">لينكد إن</a></p>
+      <p>© 2025 حسام شطوري. جميع الحقوق محفوظة.</p>
+    </footer>
+  </div>
+
+  <script>
+    // إعداد الرابط لتحميل السيرة الذاتية
+    var downloadLink = "https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4";
+
+    // إنشاء QR Code ديناميكي باستخدام مكتبة qrcodejs
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+      text: downloadLink,
+      width: 200,
+      height: 200,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // عند الضغط على QR Code يتم بدء التحميل
+    document.getElementById("qrcode").addEventListener("click", function() {
+      window.location.href = downloadLink;
+    });
+
+    // حماية الكود: منع فتح أدوات المطورين والنسخ والتحديد
+    document.addEventListener("contextmenu", function(e) {
+      e.preventDefault();
+    });
+    document.addEventListener("keydown", function(e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")) ||
+        (e.ctrlKey && (e.key === "U" || e.key === "u"))
+      ) {
+        e.preventDefault();
+      }
+    });
+    document.addEventListener("selectstart", function(e) {
+      e.preventDefault();
+    });
+    document.addEventListener("copy", function(e) {
+      e.preventDefault();
+    });
+  </script>
 </body>
 </html>
