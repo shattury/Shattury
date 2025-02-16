@@ -1,61 +1,194 @@
-// تفعيل مكتبة AOS لتحريك العناصر عند التمرير
-AOS.init({
-  duration: 1000,
-  once: true
-});
+/* الإعدادات العامة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: linear-gradient(135deg, #121212, #1e1e1e);
+  color: #e0e0e0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+header {
+  text-align: center;
+  padding: 20px;
+}
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #ffcc00;
+  animation: fadeInDown 1s;
+}
+header p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  animation: fadeInDown 1.5s;
+}
+/* قسم النص المتحرك بتأثير الكتابة الآلية */
+#typed-text {
+  font-size: 1.5rem;
+  color: #ffcc00;
+  margin-bottom: 20px;
+  min-height: 2em;
+}
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #ffcc00;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  display: block;
+  animation: zoomIn 1s;
+}
+.btn {
+  display: inline-block;
+  background-color: #ffcc00;
+  color: #121212;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.btn:hover {
+  background-color: #e6b800;
+  transform: scale(1.05);
+}
+section {
+  margin: 30px 0;
+  padding: 20px;
+  border-bottom: 1px solid #333;
+}
+section:last-child {
+  border-bottom: none;
+}
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
 
-// إعداد تأثير الكتابة الآلية باستخدام Typed.js
-var typed = new Typed("#typed-text", {
-  strings: ["محاسب", "محاسب محترف 💼", "متخصص في تحليل البيانات 📊", "مبدع في الإدارة المالية 💰"],
-  typeSpeed: 50,
-  backSpeed: 25,
-  loop: true
-});
+/* تحسين قسم معلومات الاتصال */
+.contact {
+  background: #2c2c2c;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px auto;
+  max-width: 800px;
+  text-align: center;
+  font-family: 'Cairo', sans-serif;
+}
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+.contact p {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}
+.contact a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+.contact a:hover {
+  text-decoration: underline;
+}
 
-// زر العودة للأعلى
-var backToTop = document.getElementById("back-to-top");
-window.onscroll = function() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    backToTop.style.display = "block";
-  } else {
-    backToTop.style.display = "none";
+/* الخبرات والشهادات */
+.experience,
+.education {
+  text-align: right;
+  direction: rtl;
+}
+.experience ul,
+.education ul {
+  list-style: none;
+  padding: 0;
+}
+.experience li,
+.education li {
+  margin: 10px 0;
+  padding: 8px;
+  background: #2a2a2a;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+.experience li:hover,
+.education li:hover {
+  background: #333;
+}
+.education li a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+.education li a:hover {
+  text-decoration: underline;
+}
+
+/* زر العودة للأعلى */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: transform 0.3s;
+}
+#back-to-top:hover {
+  transform: scale(1.1);
+}
+
+/* الفوتر */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* تأثيرات الحركة */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-};
-backToTop.addEventListener("click", function() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-});
-
-// أكواد حماية المصدر: منع النقر بزر الماوس الأيمن، الاختصارات والنسخ وتحديد النصوص
-(function() {
-  "use strict";
-  document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-  }, false);
-
-  document.addEventListener("keydown", function(e) {
-    if (
-      e.key === "F12" ||
-      (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")) ||
-      (e.ctrlKey && (e.key === "U" || e.key === "u"))
-    ) {
-      e.preventDefault();
-    }
-  }, false);
-
-  document.addEventListener("selectstart", function(e) {
-    e.preventDefault();
-  }, false);
-
-  document.addEventListener("copy", function(e) {
-    e.preventDefault();
-  }, false);
-
-  // محاولة كشف فتح أدوات المطور
-  setInterval(function() {
-    if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
-      document.body.innerHTML = "<h1 style='text-align:center;color:red;margin-top:20%;'>🚨 تم الكشف عن محاولة فحص الكود! 🚨</h1>";
-    }
-  }, 1000);
-
-  console.log("%c تحذير: استخدام أدوات المطور قد يكشف عن الكود الخاص بك!", "color: red; font-size: 16px; font-weight: bold;");
-})();
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
