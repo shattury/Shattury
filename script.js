@@ -4,24 +4,6 @@ AOS.init({
   once: true
 });
 
-// إعداد رابط تحميل السيرة الذاتية
-var downloadLink = "https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4";
-
-// توليد QR Code باستخدام مكتبة qrcodejs
-var qrcode = new QRCode(document.getElementById("qrcode"), {
-  text: downloadLink,
-  width: 200,
-  height: 200,
-  colorDark: "#000000",
-  colorLight: "#ffffff",
-  correctLevel: QRCode.CorrectLevel.H
-});
-
-// عند الضغط على QR Code يتم بدء التحميل
-document.getElementById("qrcode").addEventListener("click", function() {
-  window.location.href = downloadLink;
-});
-
 // إعداد تأثير الكتابة الآلية باستخدام Typed.js
 var typed = new Typed("#typed-text", {
   strings: ["محاسب محترف 💼", "متخصص في تحليل البيانات 📊", "مبدع في الإدارة المالية 💰"],
