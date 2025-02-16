@@ -109,19 +109,21 @@ section h2 {
 .education li a:hover {
   text-decoration: underline;
 }
-/* قسم QR Code */
-#qr-section {
+/* قسم معلومات الاتصال */
+.contact {
+  margin-top: 20px;
+  text-align: right;
+  direction: rtl;
+}
+.contact h2 {
   text-align: center;
 }
-#qrcode {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto;
-  cursor: pointer;
-  transition: transform 0.3s;
+.contact a {
+  color: #ffcc00;
+  text-decoration: none;
 }
-#qrcode:hover {
-  transform: scale(1.05);
+.contact a:hover {
+  text-decoration: underline;
 }
 /* زر العودة للأعلى */
 #back-to-top {
