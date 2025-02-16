@@ -3,83 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>السيرة الذاتية - حسام شطوري</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <style>
-        body {
-            text-align: center;
-            font-family: Arial, sans-serif;
-            background-color: #222;
-            color: #fff;
-        }
-        #qrcode {
-            margin: 20px auto;
-            width: 200px;
-            height: 200px;
-            background: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 5px;
-        }
-    </style>
+    <title>حسام شطوري</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>حسام شطوري</h1>
+            <p>محاسب متخصص في تحليل البيانات والإدارة المالية</p>
+        </header>
+        
+        <section class="profile">
+            <img src="profile.jpg" alt="صورة حسام شطوري">
+            <p>مرحبًا بك في صفحتي الشخصية! يمكنك تحميل سيرتي الذاتية ومسح QR Code للتحميل المباشر.</p>
+            <a href="https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4" class="btn">📥 تحميل السيرة الذاتية</a>
+            <p>📄 أو امسح QR Code التالي:</p>
+            <img src="qrcode.png" alt="QR Code لتحميل السيرة الذاتية">
+        </section>
 
-    <h1>🚀 السيرة الذاتية - حسام شطوري</h1>
+        <section class="experience">
+            <h2>الخبرات العملية</h2>
+            <ul>
+                <li><strong>محاسب - شركة AM للصناعات الهندسية المتطورة</strong> (يونيو 2024 - حتى الآن)</li>
+                <li><strong>محاسب تحت التدريب - المصرية للمحاسبة والضرائب</strong> (2023 - 2024)</li>
+                <li><strong>كاتب مقالات ومتخصص تسويق (فريلانسر)</strong> (2020 - 2023)</li>
+            </ul>
+        </section>
 
-    <h2>📄 اضغط على QR Code لتحميل السيرة الذاتية</h2>
-    <div id="qrcode"></div>
-    <a href="https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4" class="btn">تحميل مباشر</a>
+        <section class="education">
+            <h2>الشهادات والدورات</h2>
+            <ul>
+                <li>🎓 **بكالوريوس نظم معلومات إدارية - أكاديمية الجزيرة (2023)**</li>
+                <li>📜 <a href="#">دورة التثقيف الذاتي - إدراك</a></li>
+                <li>📜 <a href="#">دورة المحاسبة والإدارة المالية - إدراك</a></li>
+                <li>📜 <a href="#">دورة تحليل البيانات - إدراك</a></li>
+                <li>📜 <a href="#">دورة التحليل الرقمي - إدراك</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>📞 اتصل بي: <a href="tel:+201012207817">+201012207817</a> | <a href="tel:+201212299115">+201212299115</a></p>
+            <p>🔗 تابعني على: <a href="https://www.facebook.com/shattury11">فيسبوك</a> | <a href="https://www.linkedin.com/in/hossam-shattury-ba3023258/">لينكد إن</a></p>
+        </footer>
+    </div>
 
     <script>
-        // 🔒 تعطيل كليك يمين
-        document.addEventListener("contextmenu", (event) => event.preventDefault());
-
-        // 🔒 منع فتح أدوات المطورين
-        document.addEventListener("keydown", (event) => {
-            if (
-                event.key === "F12" || 
-                (event.ctrlKey && event.shiftKey && ["I", "C", "J"].includes(event.key)) || 
-                (event.ctrlKey && event.key === "U")
-            ) {
+        // منع الكليك اليمين وفتح أدوات المطورين
+        document.addEventListener("contextmenu", event => event.preventDefault());
+        document.addEventListener("keydown", function(event) {
+            if (event.ctrlKey && (event.key === "u" || event.key === "U" || event.key === "s" || event.key === "S")) {
                 event.preventDefault();
             }
         });
-
-        // 🔒 كشف تغيير حجم النافذة (لمنع فحص الكود)
-        setInterval(() => {
-            if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
-                document.body.innerHTML = "<h2 style='text-align:center;color:red;'>🚨 محاولة فحص الكود تم كشفها! 🚨</h2>";
-            }
-        }, 1000);
-
-        // 🔒 تعطيل تحديد النص والنسخ
-        document.addEventListener("selectstart", (event) => event.preventDefault());
-        document.addEventListener("copy", (event) => event.preventDefault());
-
-        // 🚀 إنشاء QR Code للتحميل
-        var downloadLink = "https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4";
-        var qrcode = new QRCode(document.getElementById("qrcode"), {
-            text: downloadLink,
-            width: 200,
-            height: 200
-        });
-
-        // 🔄 عند الضغط على QR Code يتم التحميل
-        document.getElementById("qrcode").addEventListener("click", function () {
-            window.location.href = downloadLink;
-        });
     </script>
-
 </body>
 </html>
