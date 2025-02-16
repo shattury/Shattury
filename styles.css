@@ -1,64 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap');
+// تفعيل مكتبة AOS لتحريك العناصر عند التمرير
+AOS.init({
+  duration: 1000,
+  once: true
+});
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Tajawal', sans-serif;
-    direction: rtl;
-}
+// إعداد رابط تحميل السيرة الذاتية
+var downloadLink = "https://drive.google.com/uc?export=download&id=1dS_Jn0e-R1sozX9-40tVHQrvclVgrRC4";
 
-body {
-    background-color: #121212;
-    color: #ffffff;
-    text-align: center;
-}
+// توليد QR Code باستخدام مكتبة qrcodejs
+var qrcode = new QRCode(document.getElementById("qrcode"), {
+  text: downloadLink,
+  width: 200,
+  height: 200,
+  colorDark: "#000000",
+  colorLight: "#ffffff",
+  correctLevel: QRCode.CorrectLevel.H
+});
 
-.container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #1e1e1e;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-}
+// عند الضغط على QR Code يتم بدء التحميل
+document.getElementById("qrcode").addEventListener("click", function() {
+  window.location.href = downloadLink;
+});
 
-header img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid #fff;
-}
+// إعداد تأثير الكتابة الآلية باستخدام Typed.js
+var typed = new Typed("#typed-text", {
+  strings: ["محاسب محترف 💼", "متخصص في تحليل البيانات 📊", "مبدع في الإدارة المالية 💰"],
+  typeSpeed: 50,
+  backSpeed: 25,
+  loop: true
+});
 
-h1 {
-    margin-top: 10px;
-    font-size: 26px;
-}
+// زر العودة للأعلى
+var backToTop = document.getElementById("back-to-top");
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    backToTop.style.display = "block";
+  } else {
+    backToTop.style.display = "none";
+  }
+};
+backToTop.addEventListener("click", function() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
 
-h2 {
-    margin-top: 20px;
-    font-size: 22px;
-    border-bottom: 2px solid #ffcc00;
-    display: inline-block;
-    padding-bottom: 5px;
-}
-
-p, li {
-    font-size: 18px;
-    margin: 10px 0;
-}
-
-a {
-    color: #ffcc00;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-footer {
-    margin-top: 20px;
-    font-size: 14px;
-    opacity: 0.7;
-}
+// حماية الكود: منع النقر بزر الماوس الأيمن، النسخ وتحديد النصوص
+document.addEventListener("contextmenu", function(e) { e.preventDefault(); });
+document.addEventListener("keydown", function(e) {
+  if (
+    e.key === "F12" ||
+    (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "C" || e.key === "J")) ||
+    (e.ctrlKey && (e.key === "U" || e.key === "u"))
+  ) {
+    e.preventDefault();
+  }
+});
+document.addEventListener("selectstart", function(e) { e.preventDefault(); });
+document.addEventListener("copy", function(e) { e.preventDefault(); });
