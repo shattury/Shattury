@@ -1,47 +1,178 @@
-(function() {
-  "use strict";
-
-  // منع القائمة السياقية (النقر بزر الماوس الأيمن)
-  document.addEventListener("contextmenu", function(e) {
-    e.preventDefault();
-  }, false);
-
-  // منع المفاتيح التي تفتح أدوات المطور (F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U)
-  document.addEventListener("keydown", function(e) {
-    // F12
-    if (e.keyCode === 123) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+Shift+I أو Ctrl+Shift+J
-    if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) {
-      e.preventDefault();
-      return false;
-    }
-    // Ctrl+U
-    if (e.ctrlKey && e.keyCode === 85) {
-      e.preventDefault();
-      return false;
-    }
-  }, false);
-
-  // منع تحديد النصوص والنسخ
-  document.addEventListener("selectstart", function(e) {
-    e.preventDefault();
-  }, false);
-
-  document.addEventListener("copy", function(e) {
-    e.preventDefault();
-  }, false);
-
-  // محاولة اكتشاف فتح أدوات المطور من خلال تغيير حجم النافذة
-  setInterval(function() {
-    const threshold = 160; // قيمة افتراضية
-    if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
-      document.body.innerHTML = "<h1 style='text-align:center;color:red;margin-top:20%;'>🚨 تم الكشف عن محاولة فتح أدوات المطور! 🚨</h1>";
-    }
-  }, 1000);
-
-  // رسالة تحذيرية في Console
-  console.log("%c تحذير: استخدام أدوات المطور قد يكشف عن الكود الخاص بك! ", "color: red; font-size: 16px; font-weight: bold;");
-})();
+/* الإعدادات العامة */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Tajawal', sans-serif;
+  background: linear-gradient(135deg, #121212, #1e1e1e);
+  color: #e0e0e0;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+.container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+header {
+  text-align: center;
+  padding: 20px;
+}
+header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  color: #ffcc00;
+  animation: fadeInDown 1s;
+}
+header p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  animation: fadeInDown 1.5s;
+}
+/* قسم النص المتحرك بتأثير الكتابة الآلية */
+#typed-text {
+  font-size: 1.5rem;
+  color: #ffcc00;
+  margin-bottom: 20px;
+  min-height: 2em;
+}
+.profile-img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid #ffcc00;
+  object-fit: cover;
+  margin: 0 auto 20px;
+  display: block;
+  animation: zoomIn 1s;
+}
+.btn {
+  display: inline-block;
+  background-color: #ffcc00;
+  color: #121212;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: transform 0.3s, background-color 0.3s;
+}
+.btn:hover {
+  background-color: #e6b800;
+  transform: scale(1.05);
+}
+section {
+  margin: 30px 0;
+  padding: 20px;
+  border-bottom: 1px solid #333;
+}
+section:last-child {
+  border-bottom: none;
+}
+section h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ffcc00;
+}
+/* الخبرات والشهادات */
+.experience,
+.education {
+  text-align: right;
+  direction: rtl;
+}
+.experience ul,
+.education ul {
+  list-style: none;
+  padding: 0;
+}
+.experience li,
+.education li {
+  margin: 10px 0;
+  padding: 8px;
+  background: #2a2a2a;
+  border-radius: 5px;
+  transition: background 0.3s;
+}
+.experience li:hover,
+.education li:hover {
+  background: #333;
+}
+.education li a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+.education li a:hover {
+  text-decoration: underline;
+}
+/* قسم QR Code */
+#qr-section {
+  text-align: center;
+}
+#qrcode {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+#qrcode:hover {
+  transform: scale(1.05);
+}
+/* زر العودة للأعلى */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ffcc00;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 15px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none;
+  z-index: 1000;
+  transition: transform 0.3s;
+}
+#back-to-top:hover {
+  transform: scale(1.1);
+}
+/* الفوتر */
+footer {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+/* تأثيرات الحركة */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
